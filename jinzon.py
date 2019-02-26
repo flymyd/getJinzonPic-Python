@@ -10,7 +10,7 @@ mkdir.mkdir(mkpath)
 page_head_url = "http://www.yiren30.com/se/yazhousetu/"
 ua_header = {'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Mobile Safari/537.36'}
 # start = 496163 , test = 622013
-for page_num in range(497523, 647100):
+for page_num in range(497536, 647100):
     # 获取该页源码
     page_url = page_head_url + str(page_num) + ".html"
     try:
@@ -18,7 +18,7 @@ for page_num in range(497523, 647100):
         response = urllib.request.urlopen(request, timeout=30)
     except:
         print("第" + str(page_num) + "页连接失败")
-        logger.logger(mkpath, "第" + str(page_num) + "页连接失败")
+        logger.logger(mkpath, "第" + str(page_num) + "页连接失败\n")
         continue
     page_source_code = str(response.read(), encoding="utf-8")
     soup = BeautifulSoup(page_source_code, features="lxml")
