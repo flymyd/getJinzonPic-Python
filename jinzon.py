@@ -2,6 +2,7 @@ import urllib.request
 import urllib.parse
 import mkdir
 import logger
+import socket
 from bs4 import BeautifulSoup
 # 保存路径
 mkpath = "c:\\jinzonpic\\"
@@ -9,7 +10,7 @@ mkdir.mkdir(mkpath)
 page_head_url = "http://www.yiren30.com/se/yazhousetu/"
 ua_header = {'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Mobile Safari/537.36'}
 # start = 496163 , test = 622013
-for page_num in range(497522, 647100):
+for page_num in range(497523, 647100):
     # 获取该页源码
     page_url = page_head_url + str(page_num) + ".html"
     try:
@@ -47,7 +48,8 @@ for page_num in range(497522, 647100):
             logger.logger(mkpath, "第"+str(page_num)+"页匹配成功\n")
             try:
                 # 按编号下载图片
-                urllib.request.urlretrieve(img_src.get('src'),save_destination)
+                socket.setdefaulttimeout(30)
+                urllib.request.urlretrieve(img_src.get('src'), save_destination)
                 # 记录图片路径
                 logger.recorder(mkpath, "lorem" + pic_folder_name + "ipsum" + save_destination + "dolor" + "\n")
                 img_generate_num = img_generate_num + 1
