@@ -17,6 +17,8 @@ for page_num in range(497523, 647100):
         request = urllib.request.Request(page_url, headers=ua_header)
         response = urllib.request.urlopen(request, timeout=30)
     except:
+        print("第" + str(page_num) + "页连接失败")
+        logger.logger(mkpath, "第" + str(page_num) + "页连接失败")
         continue
     page_source_code = str(response.read(), encoding="utf-8")
     soup = BeautifulSoup(page_source_code, features="lxml")
@@ -48,7 +50,7 @@ for page_num in range(497523, 647100):
             logger.logger(mkpath, "第"+str(page_num)+"页匹配成功\n")
             try:
                 # 按编号下载图片
-                socket.setdefaulttimeout(30)
+                # socket.setdefaulttimeout(30)
                 urllib.request.urlretrieve(img_src.get('src'), save_destination)
                 # 记录图片路径
                 logger.recorder(mkpath, "lorem" + pic_folder_name + "ipsum" + save_destination + "dolor" + "\n")
