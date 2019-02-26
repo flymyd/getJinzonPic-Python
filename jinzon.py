@@ -9,12 +9,12 @@ mkdir.mkdir(mkpath)
 page_head_url = "http://www.yiren30.com/se/yazhousetu/"
 ua_header = {'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Mobile Safari/537.36'}
 # start = 496163 , test = 622013
-for page_num in range(496167, 647100):
+for page_num in range(497522, 647100):
     # 获取该页源码
     page_url = page_head_url + str(page_num) + ".html"
     try:
         request = urllib.request.Request(page_url, headers=ua_header)
-        response = urllib.request.urlopen(request)
+        response = urllib.request.urlopen(request, timeout=30)
     except:
         continue
     page_source_code = str(response.read(), encoding="utf-8")
